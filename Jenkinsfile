@@ -9,11 +9,11 @@ pipeline{
   
   tools {
       maven 'maven'
-      jdk ''java8'
+      jdk 'java8'
   }
   
   triggers{
-    gitlab(triggerOnPush: true, trigger On MergeRequest: true, branchFilterType: 'All')
+    gitlab(triggerOnPush: true, triggerOnMergeRequest: true, branchFilterType: 'All')
   }
   
   stages{
@@ -37,7 +37,7 @@ pipeline{
                 APPNAME = env.gitlabSourceRepoName
                 REPO_CREDENTIALSID = 'JENKINS AND GIT SSH KEY ID NAME'
                 currentBuild.displayName = "BRANCH:${BRANCH}, BUILD:#${Build_number}"]
-                echo ""App Name = $APPNAME"
+                echo "App Name = $APPNAME"
                 
               }
               
@@ -47,5 +47,6 @@ pipeline{
               gitrepo.checkOut(REPO, BRANCH, REPO_CREDENTIALSID)
               }
               
-              
+         }
+     }
    
